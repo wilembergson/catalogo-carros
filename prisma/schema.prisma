@@ -27,3 +27,14 @@ model Session {
 
   @@map("sessions")
 }
+
+model Vehicle {
+  id Int @id @default(autoincrement())
+  name String
+  brand String
+  model String
+  price Int
+  picture String
+
+  @@map("vehicles")
+}
