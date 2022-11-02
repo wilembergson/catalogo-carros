@@ -1,4 +1,8 @@
+import { Vehicle } from "@prisma/client"
+
 import prisma from "../config/database.js"
+
+export type VehicleInsertBody = Omit<Vehicle, "id">
 
 async function listVehicles(){
     return await prisma.vehicle.findMany()
@@ -12,8 +16,26 @@ async function getVehicleById(id:number){
     })
 }
 
+async function newVehicle(vehicle:VehicleInsertBody){
+    return await prisma.vehicle.create({
+        data: vehicle
+    })
+}
+
+async function findExistingVehicle(vehicle:VehicleInsertBody){
+    return await prisma.vehicle.findFirst({
+        where:{
+            name:vehicle.name,
+            brand: vehicle.brand,
+            model: vehicle.model
+        }
+    })
+}
+
 const vehicleRepository = {
     listVehicles,
-    getVehicleById
+    getVehicleById,
+    newVehicle,
+    findExistingVehicle
 }
 export default vehicleRepository

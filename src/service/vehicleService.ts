@@ -1,7 +1,9 @@
 import { Vehicle } from "@prisma/client"
 
-import vehicleRepository from "../repository/vehicleRepository.js"
+import vehicleRepository, { VehicleInsertBody } from "../repository/vehicleRepository.js"
+import { NewVehicleBody } from "../schemas/newVehicleSchema.js"
 import ErrorMessage from "../utils/erroMessage.js"
+import sucessMessage from "../utils/successMessage.js"
 
 async function listVehicles(){
     const vehicles = await vehicleRepository.listVehicles()
@@ -16,8 +18,17 @@ async function getVehicleById(id:number){
     return vehicle
 }
 
+async function newVehicle(vehicle:NewVehicleBody){
+    const newVehicle:VehicleInsertBody = {...vehicle, price:parseFloat(vehicle.price)}
+    const existingVehicle = await vehicleRepository.findExistingVehicle(newVehicle)
+    if(existingVehicle) ErrorMessage(401, "Este veículo já está cadastrado.")
+    await vehicleRepository.newVehicle(newVehicle)
+    return sucessMessage("Novo veículo cadastrado com sucesso!")
+}
+
 const vehicleService = {
     listVehicles,
-    getVehicleById
+    getVehicleById,
+    newVehicle
 }
 export default vehicleService

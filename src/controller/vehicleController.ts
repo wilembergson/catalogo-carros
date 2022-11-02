@@ -12,3 +12,9 @@ export async function getVehicleById(req:Request, res:Response){
     const result = await vehicleService.getVehicleById(parseInt(id))
     return res.status(200).json(result)
 }
+
+export async function newVehicle(req:Request, res:Response){
+    const vehicle = res.locals.body
+    const result = await vehicleService.newVehicle(vehicle)
+    return res.status(201).json(result)
+}
