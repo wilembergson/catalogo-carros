@@ -24,3 +24,10 @@ export async function deleteVehicle(req:Request, res:Response){
     const result = await vehicleService.deleteVehicle(parseInt(id))
     return res.status(200).json(result)
 }
+
+export async function updateVehicle(req:Request, res:Response){
+    const { id } = req.params
+    const vehicle = res.locals.body
+    const result = await vehicleService.updateVehicle(id, vehicle)
+    return res.status(200).json(result)
+}

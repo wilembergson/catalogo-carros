@@ -1,14 +1,7 @@
 import Joi from "joi"
+import { VehicleBody } from "./newVehicleSchema.js"
 
-export type VehicleBody = {
-    name: string;
-    brand: string;
-    model: string;
-    price: string;
-    picture: string;
-}
-
-export const newVehicleSchema = Joi.object<VehicleBody>({
+export const updateVehicleSchema = Joi.object<VehicleBody>({
     name: Joi.string().required(),
     brand: Joi.string().required(),
     model: Joi.string().required(),

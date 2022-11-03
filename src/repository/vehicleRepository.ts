@@ -25,7 +25,7 @@ async function newVehicle(vehicle:VehicleInsertBody){
 async function findExistingVehicle(vehicle:VehicleInsertBody){
     return await prisma.vehicle.findFirst({
         where:{
-            name:vehicle.name,
+            name: vehicle.name,
             brand: vehicle.brand,
             model: vehicle.model
         }
@@ -40,11 +40,21 @@ async function deleteVehicle(id:number){
     })
 }
 
+async function updateVehicle(vehicle:Vehicle){
+    return await prisma.vehicle.update({
+        where:{
+            id:vehicle.id
+        },
+        data: vehicle
+    })
+}
+
 const vehicleRepository = {
     listVehicles,
     getVehicleById,
     newVehicle,
     findExistingVehicle,
-    deleteVehicle
+    deleteVehicle,
+    updateVehicle
 }
 export default vehicleRepository

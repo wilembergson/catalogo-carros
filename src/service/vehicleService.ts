@@ -1,7 +1,7 @@
 import { Vehicle } from "@prisma/client"
 
 import vehicleRepository, { VehicleInsertBody } from "../repository/vehicleRepository.js"
-import { NewVehicleBody } from "../schemas/newVehicleSchema.js"
+import { VehicleBody } from "../schemas/newVehicleSchema.js"
 import ErrorMessage from "../utils/erroMessage.js"
 import sucessMessage from "../utils/successMessage.js"
 
@@ -18,7 +18,7 @@ async function getVehicleById(id:number){
     return vehicle
 }
 
-async function newVehicle(vehicle:NewVehicleBody){
+async function newVehicle(vehicle:VehicleBody){
     const newVehicle:VehicleInsertBody = {...vehicle, price:parseFloat(vehicle.price)}
     const existingVehicle = await vehicleRepository.findExistingVehicle(newVehicle)
     if(existingVehicle) ErrorMessage(401, "Este veículo já está cadastrado.")
@@ -33,10 +33,19 @@ async function deleteVehicle(id:number){
     return sucessMessage("Veículo deletado!")
 }
 
+async function updateVehicle(id:string, vehicle: VehicleBody){
+    const existingehicle = await vehicleRepository.getVehicleById(parseInt(id))
+    if(!existingehicle) ErrorMessage(422, "ID do veículo inválido!")
+    const updatedVehicle:Vehicle = {id:parseInt(id), ...vehicle, price:parseFloat(vehicle.price)}
+    await vehicleRepository.updateVehicle(updatedVehicle)
+    return sucessMessage("Dados do veículo atualizados com sucesso!")
+}
+
 const vehicleService = {
     listVehicles,
     getVehicleById,
     newVehicle,
-    deleteVehicle
+    deleteVehicle,
+    updateVehicle
 }
 export default vehicleService
