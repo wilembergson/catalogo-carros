@@ -21,7 +21,10 @@ async function login(login: LoginBody){
             userId: user.id,
             userLogin
         },
-        process.env.JWT_SECRET
+        process.env.JWT_SECRET,
+        {
+            expiresIn: 300
+        }
     )
     const newSession: SessionInsertData = {
         userId: user.id,

@@ -26,9 +26,17 @@ async function newVehicle(vehicle:NewVehicleBody){
     return sucessMessage("Novo veículo cadastrado com sucesso!")
 }
 
+async function deleteVehicle(id:number){
+    const vehicle = await vehicleRepository.getVehicleById(id)
+    if(!vehicle) ErrorMessage(404, "ID do veículo não existente ou inválido!")
+    await vehicleRepository.deleteVehicle(id)
+    return sucessMessage("Veículo deletado!")
+}
+
 const vehicleService = {
     listVehicles,
     getVehicleById,
-    newVehicle
+    newVehicle,
+    deleteVehicle
 }
 export default vehicleService

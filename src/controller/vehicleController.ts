@@ -18,3 +18,9 @@ export async function newVehicle(req:Request, res:Response){
     const result = await vehicleService.newVehicle(vehicle)
     return res.status(201).json(result)
 }
+
+export async function deleteVehicle(req:Request, res:Response){
+    const { id } = req.params
+    const result = await vehicleService.deleteVehicle(parseInt(id))
+    return res.status(200).json(result)
+}
