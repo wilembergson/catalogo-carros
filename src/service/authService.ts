@@ -23,7 +23,7 @@ async function login(login: LoginBody){
         },
         process.env.JWT_SECRET,
         {
-            expiresIn: 300
+            expiresIn: 1200
         }
     )
     const newSession: SessionInsertData = {
