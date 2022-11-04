@@ -1,4 +1,5 @@
 import Joi from "joi"
+
 import { VehicleBody } from "./newVehicleSchema.js"
 
 export const updateVehicleSchema = Joi.object<VehicleBody>({

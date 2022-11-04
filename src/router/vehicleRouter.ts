@@ -9,7 +9,7 @@ import { updateVehicleSchema } from "../schemas/updateVehicleSchema.js"
 const vehicleRouter = Router()
 
 vehicleRouter.get("/vehicles", listVehicles)
-vehicleRouter.get("/vehicles/:id", validateToken(), getVehicleById)
+vehicleRouter.get("/vehicles/:id", getVehicleById)
 vehicleRouter.post("/vehicles",validateSchemaAndToken(newVehicleSchema), newVehicle)
 vehicleRouter.delete("/vehicles/:id", validateToken(), deleteVehicle)
 vehicleRouter.put("/vehicles/:id", validateSchemaAndToken(updateVehicleSchema), updateVehicle)
