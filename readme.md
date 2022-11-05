@@ -32,3 +32,6 @@ Após estes comandos, as configurações com o banco de dados estarão feitas e 
 - No processo de configuração do Prisma que realizamos anteriormente, foram criados alguns dados no banco, mais especificamente quando execultamos o comando <strong>npx prisma db seed</strong>, e entre estes dados estam o usuário e senha que você poderá usar para fazer o login. Os dados encontra-se logo abaixo.</br></br>
 <strong>USUÁRIO: admin</strong></br>
 <strong>SENHA: adminpassword</strong>
+
+## Link para o repositório do frontend
+- https://github.com/wilembergson/catalogo-carros-frontend
