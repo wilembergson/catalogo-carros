@@ -26,7 +26,7 @@ async function main() {
             {
                 name:"Cruze",
                 brand:"Chevrolet",
-                model:"LT 1.4 Turbo AT ",
+                model:"LT 1.4",
                 price:57890,
                 picture:"https://motortudo.com/wp-content/uploads/2020/05/Ficha-T%C3%A9cnica-Chevrolet-Cruze-Hatch-LT-1.4-Turbo-2020.jpg"
             },
